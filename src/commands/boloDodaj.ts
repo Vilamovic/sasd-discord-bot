@@ -9,9 +9,9 @@ export const boloDodaj = {
     .setName('bolo-dodaj')
     .setDescription('[CS+] Dodaj BOLO na pojazd')
     .addStringOption((o) => o.setName('tablica').setDescription('Numer tablicy').setRequired(true))
+    .addStringOption((o) => o.setName('opis').setDescription('Powód poszukiwania').setRequired(true))
     .addStringOption((o) => o.setName('pojazd').setDescription('Marka/model'))
-    .addStringOption((o) => o.setName('kolor').setDescription('Kolor pojazdu'))
-    .addStringOption((o) => o.setName('opis').setDescription('Powód poszukiwania').setRequired(true)),
+    .addStringOption((o) => o.setName('kolor').setDescription('Kolor pojazdu')),
 
   async execute(interaction: ChatInputCommandInteraction) {
     if (!interaction.member || !hasCS(interaction.member as any)) {
