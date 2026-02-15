@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Collection } from 'discord.js';
+import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
 import { config } from './config';
 import { onReady } from './events/ready';
 import { onInteractionCreate } from './events/interactionCreate';
@@ -18,8 +18,20 @@ async function main() {
     (client as any).commands.set(cmd.data.name, cmd);
   }
 
-  // Register event handlers
-  client.once('ready', () => onReady(client));
+  // Register event handlers (clientReady = discord.js v15 compat)
+  client.once('ready', async () => {
+    onReady(client);
+
+    // Auto-register slash commands on startup
+    try {
+      const rest = new REST().setToken(config.token);
+      const commandData = commands.map((c) => c.data.toJSON());
+      await rest.put(Routes.applicationGuildCommands(config.clientId, config.guildId), { body: commandData });
+      console.log(`✅ Zarejestrowano ${commandData.length} slash commands`);
+    } catch (err) {
+      console.error('❌ Błąd rejestracji komend:', err);
+    }
+  });
   client.on('interactionCreate', (interaction) => onInteractionCreate(interaction, client));
 
   // Login
