@@ -5,6 +5,7 @@ import { formatEgzaminy } from './egzaminy';
 import { formatRaporty } from './raporty';
 import { formatZgloszenia } from './zgloszenia';
 import { formatMdt } from './mdt';
+import { formatPatchnotes } from './patchnotes';
 
 const formatters: Record<string, (data: Record<string, any>) => EmbedBuilder | null> = {
   // Kadry
@@ -37,6 +38,9 @@ const formatters: Record<string, (data: Record<string, any>) => EmbedBuilder | n
   mdt_record: (d) => formatMdt('mdt_record', d),
   mdt_warrant: (d) => formatMdt('mdt_warrant', d),
   mdt_bolo: (d) => formatMdt('mdt_bolo', d),
+
+  // Patchnotes
+  patchnotes: (d) => formatPatchnotes('patchnotes', d),
 };
 
 export function formatEvent(eventType: string, data: Record<string, any>): EmbedBuilder | null {
