@@ -14,6 +14,7 @@ export const config = {
     'logi-raporty': process.env.CHANNEL_RAPORTY!,
     'logi-zgloszenia': process.env.CHANNEL_ZGLOSZENIA!,
     'logi-mdt': process.env.CHANNEL_MDT!,
+    'patchnotes': process.env.CHANNEL_PATCHNOTES!,
   } as Record<string, string>,
 
   // Role IDs for permission checks

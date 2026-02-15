@@ -12,11 +12,14 @@ import { boloDodaj } from './boloDodaj';
 import { dywizja } from './dywizja';
 import { uprawnienie } from './uprawnienie';
 import { forceLogout } from './forceLogout';
+import { patchnotes } from './patchnotes';
+import { patchnotesDodaj } from './patchnotesDodaj';
 
 export function loadCommands() {
   return [
     profil, balance, egzaminy, bolo, kartoteka, stats,
     plus, minus, awans, kara, boloDodaj,
     dywizja, uprawnienie, forceLogout,
+    patchnotes, patchnotesDodaj,
   ];
 }
