@@ -39,6 +39,10 @@ const formatters: Record<string, (data: Record<string, any>) => EmbedBuilder | n
   mdt_warrant: (d) => formatMdt('mdt_warrant', d),
   mdt_bolo: (d) => formatMdt('mdt_bolo', d),
 
+  // Mapa
+  map_marker: (d) => formatMdt('map_marker', d),
+  map_sharing: (d) => formatMdt('map_sharing', d),
+
   // Patchnotes
   patchnotes: (d) => formatPatchnotes('patchnotes', d),
 };

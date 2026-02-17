@@ -15,6 +15,14 @@ const actionLabels: Record<string, Record<string, string>> = {
     delete: '🗑️ Usunięto BOLO',
     resolve: '✅ BOLO rozwiązany',
   },
+  map_marker: {
+    create: '📍 Nowe oznaczenie na mapie',
+    delete: '🗑️ Usunięto oznaczenie z mapy',
+  },
+  map_sharing: {
+    create: '🔗 Udostępniono warstwę mapową',
+    delete: '🔗 Usunięto udostępnienie warstwy',
+  },
 };
 
 export function formatMdt(type: string, d: Record<string, any>): EmbedBuilder {
@@ -50,6 +58,22 @@ export function formatMdt(type: string, d: Record<string, any>): EmbedBuilder {
       if (d.color) embed.addFields({ name: 'Kolor', value: d.color, inline: true });
       if (d.reason) embed.addFields({ name: 'Powód', value: d.reason, inline: false });
       if (d.reportedBy) embed.addFields({ name: 'Zgłosił', value: d.reportedBy, inline: true });
+      return embed;
+
+    case 'map_marker':
+      embed.setTitle(label).setColor(d.action === 'delete' ? 0xc41e1e : 0x3a6a3a);
+      if (d.marker_title) embed.addFields({ name: 'Oznaczenie', value: d.marker_title, inline: true });
+      if (d.marker_type) embed.addFields({ name: 'Typ', value: d.marker_type, inline: true });
+      if (d.division) embed.addFields({ name: 'Dywizja', value: d.division, inline: true });
+      if (d.actor_name) embed.addFields({ name: 'Wykonał', value: d.actor_name, inline: true });
+      return embed;
+
+    case 'map_sharing':
+      embed.setTitle(label).setColor(d.action === 'delete' ? 0xc41e1e : 0x60a5fa);
+      if (d.division_from && d.division_to) {
+        embed.addFields({ name: 'Udostępnienie', value: `${d.division_from} → ${d.division_to}`, inline: false });
+      }
+      if (d.actor_name) embed.addFields({ name: 'Wykonał', value: d.actor_name, inline: true });
       return embed;
 
     default:
