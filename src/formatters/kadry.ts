@@ -36,8 +36,8 @@ export function formatKadry(type: string, d: Record<string, any>): EmbedBuilder 
 
     case 'permission_change':
       return embed
-        .setTitle(d.action === 'grant' ? '🔑 Nadanie uprawnienia' : '🔑 Usunięcie uprawnienia')
-        .setColor(d.action === 'grant' ? 0x3a6a3a : 0xc41e1e)
+        .setTitle(d.isGranted ? '🔑 Nadanie uprawnienia' : '🔑 Usunięcie uprawnienia')
+        .setColor(d.isGranted ? 0x3a6a3a : 0xc41e1e)
         .addFields(
           { name: 'Użytkownik', value: `${d.user} (${d.mtaNick || '—'})`, inline: false },
           { name: 'Uprawnienie', value: d.permission || '—', inline: true },
