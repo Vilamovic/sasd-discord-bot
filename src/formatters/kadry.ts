@@ -26,8 +26,8 @@ export function formatKadry(type: string, d: Record<string, any>): EmbedBuilder 
 
     case 'division_change':
       return embed
-        .setTitle(d.action === 'grant' ? '🏷️ Nadanie dywizji' : '🏷️ Usunięcie dywizji')
-        .setColor(d.action === 'grant' ? 0x60a5fa : 0xff8c00)
+        .setTitle(d.isGranted ? '🏷️ Nadanie dywizji' : '🏷️ Usunięcie dywizji')
+        .setColor(d.isGranted ? 0x60a5fa : 0xff8c00)
         .addFields(
           { name: 'Użytkownik', value: `${d.user} (${d.mtaNick || '—'})`, inline: false },
           { name: 'Dywizja', value: d.division || '—', inline: true },
